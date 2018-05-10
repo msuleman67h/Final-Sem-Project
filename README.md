@@ -2,9 +2,8 @@
 Author: Muhammad Ali
 
 This project is virtual software to have a record of Departmental Store, to manage the goods and
-to generate the bills for the customer. The main idea can be extracted from its main menu, main
-menu should be like the fig 1.1. You should define the functions to implement all the features of
-the main menu. The summary of the functions are as follows:
+to generate the bills for the customer.
+The summary of the functions are as follows:
 1. Add_goods: It will ask the user to enter a unique ID number of a product, its price, its
 quantity and its name. This function will store all the data inside different arrays and/or
 strings which will be accessed by the index which will also be its ID number.
