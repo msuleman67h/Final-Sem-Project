@@ -1,5 +1,5 @@
 #include<stdio.h>
-void addgoods(int a,int b[100],int c[100],char d[100],char f[100][100])
+void addgoods(int a,int b[100],int c[100],char f[100][100])
 {
     int i,e;
     int confirm = 1;
@@ -17,18 +17,18 @@ void addgoods(int a,int b[100],int c[100],char d[100],char f[100][100])
         scanf("%d",&c[a]);
 
         printf("Enter the name of the item:\n");
-        scanf("%s,%s",&d[a],f[a]);
+        scanf("\n%s",f[a]);
 
         printf("Enter new record(0=NO/1=YES)");
         scanf("%d",&e);
 
-        printf("Do you want to add another item? (0=NO/1=YES)");
+        printf("Do you want to add another item?(0=NO/1=YES)");
         scanf("%d",&confirm);
     }
-    while(confirm == 1);
+    while(confirm==1);
 }
 
-void editgoods(int b[100],int c[100],char d[100],char e[100][100])
+void editgoods(int b[100],int c[100],char e[100][100])
 {
     printf("					Edit Articles\n\n\n");
 
@@ -47,7 +47,7 @@ void editgoods(int b[100],int c[100],char d[100],char e[100][100])
         scanf("%d",&c[l]);
 
         printf("Enter the name of the item:\n");
-        scanf("%s,%s",&d[l],&e[l]);
+        scanf("\n%s",&e[l]);
     }
     else
     {
@@ -107,7 +107,7 @@ void deletedgoods(int a,int b[100])
     b[a]=0;
 }
 
-void billc(int b[100],char d[100][100])
+void billc(int b[100],char d[100][100],int c[100])
 {
     system("cls");
     printf("					Bill Calculation\n\n\n");
@@ -126,20 +126,28 @@ void billc(int b[100],char d[100][100])
             printf("Enter its quantity too:\n");
             scanf("%d",&q);
 
-            tb+=q*b[l];
+            if(c[l]-q>=0)
+            {
+                tb+=q*b[l];
 
-            total=q*b[l];
-            printf("\t\t\t\t\tCUSTOMER'S BILL\n");
+                total=q*b[l];
+                c[l]=c[l]-q;
+                printf("\t\t\t\t\tCUSTOMER'S BILL\n");
 
-            printf("ID\tItem name\tQuantity\t\t\t\tRate\t\tTotal\n");
-            printf("%d\t%s\t\t%d\t\t\t\t\t%d\t\t%d\n",l,d[l],q,b[l],total);
-            printf("Your total bill is RS%d\n",tb);
+                printf("ID\tItem name\tQuantity\t\t\t\tRate\t\tTotal\n");
+                printf("%d\t%s\t\t%d\t\t\t\t\t%d\t\t%d\n",l,d[l],q,b[l],total);
+            }
+            else
+            {
+                printf("You dont have enough quantity of the specific item\n");
+            }
         }
         else
         {
             printf("Nothing exists at this ID\n");
         }
     }
+    printf("Your total bill is RS%d\n",tb);
 }
 int main()
 {
@@ -168,17 +176,17 @@ label6:
         {
 
         case 1:
-            billc(rate,name);
+            billc(rate,name,quantity);
             goto label1;
             break;
 
         case 2:
-            addgoods(id,rate,quantity,fake,name);
+            addgoods(id,rate,quantity,name);
             goto label2;
             break;
 
         case 3:
-            editgoods(rate,quantity,fake,name);
+            editgoods(rate,quantity,name);
             goto label3;
             break;
 
